@@ -43,12 +43,14 @@ android {
             dimension = "Environment"
             buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/\"")
             buildConfigField("String", "API_KEY", "\"a7aa777890be978896f11990f0e5bbb7\"")
+            buildConfigField("String", "IMAGE_BASE_URL", "\"https://image.tmdb.org/t/p/original\"")
         }
 
         create("production") {
             dimension = "Environment"
             buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/\"")
             buildConfigField("String", "API_KEY", "\"a7aa777890be978896f11990f0e5bbb7\"")
+            buildConfigField("String", "IMAGE_BASE_URL", "\"https://image.tmdb.org/t/p/original\"")
         }
     }
 
@@ -118,6 +120,10 @@ dependencies {
     // Coil
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+
+    // Paging
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
 }
 
 // Allow references to generated code

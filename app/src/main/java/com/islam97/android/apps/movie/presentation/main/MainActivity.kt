@@ -14,10 +14,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.islam97.android.apps.movie.core.utils.NAVIGATION_DURATION
 import com.islam97.android.apps.movie.presentation.home.HomeScreen
 import com.islam97.android.apps.movie.presentation.home.RouteHomeScreen
 import com.islam97.android.apps.movie.presentation.ui.theme.MovieTheme
-import com.islam97.android.apps.movie.presentation.utils.NAVIGATION_DURATION
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
