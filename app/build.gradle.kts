@@ -41,10 +41,14 @@ android {
     productFlavors {
         create("develop") {
             dimension = "Environment"
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/\"")
+            buildConfigField("String", "API_KEY", "\"a7aa777890be978896f11990f0e5bbb7\"")
         }
 
         create("production") {
             dimension = "Environment"
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/\"")
+            buildConfigField("String", "API_KEY", "\"a7aa777890be978896f11990f0e5bbb7\"")
         }
     }
 
