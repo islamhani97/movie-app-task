@@ -2,4 +2,7 @@
     <string name="app_name">Movie</string>
     <string name="error_network">Error %1$d</string>
     <string name="error_something_went_wrong">Something went wrong</string>
+    <string name="retry">Retry</string>
+    <string name="loading_movies">Loading movies…</string>
+    <string name="loading_more">Loading more…</string>
 </resources>

@@ -16,11 +16,11 @@ class HomeViewModel
 @Inject constructor(private val getMovieListUseCase: GetMovieListUseCase) :
     MviViewModel<HomeState, HomeIntent, HomeEffect>() {
 
-    override val mutableState: MutableStateFlow<HomeState> = MutableStateFlow(HomeState.Idle)
+    override val mutableState: MutableStateFlow<HomeState> = MutableStateFlow(HomeState.Loading)
 
     override fun handleIntent(intent: HomeIntent) {
         when (intent) {
-            HomeIntent.Load -> loadMovies()
+            HomeIntent.LoadMovies -> loadMovies()
         }
     }
 
@@ -31,14 +31,13 @@ class HomeViewModel
 }
 
 sealed interface HomeState {
-    data object Idle : HomeState
     data object Loading : HomeState
     data class Content(val movies: Flow<PagingData<Movie>>) : HomeState
     data class Error(val message: String) : HomeState
 }
 
 sealed interface HomeIntent {
-    data object Load : HomeIntent
+    data object LoadMovies : HomeIntent
 }
 
 sealed interface HomeEffect
