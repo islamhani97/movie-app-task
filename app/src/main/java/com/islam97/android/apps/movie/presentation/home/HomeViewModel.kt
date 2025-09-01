@@ -9,6 +9,7 @@ import com.islam97.android.apps.movie.presentation.base.MviViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,9 +19,16 @@ class HomeViewModel
 
     override val mutableState: MutableStateFlow<HomeState> = MutableStateFlow(HomeState.Loading)
 
+    init {
+        handleIntent(HomeIntent.LoadMovies)
+    }
+
     override fun handleIntent(intent: HomeIntent) {
         when (intent) {
             HomeIntent.LoadMovies -> loadMovies()
+            is HomeIntent.NavigateToDetailsScreen -> viewModelScope.launch {
+                mutableEffectFlow.emit(HomeEffect.NavigateToDetailsScreen(movieId = intent.movieId))
+            }
         }
     }
 
@@ -38,6 +46,9 @@ sealed interface HomeState {
 
 sealed interface HomeIntent {
     data object LoadMovies : HomeIntent
+    data class NavigateToDetailsScreen(val movieId: Int) : HomeIntent
 }
 
-sealed interface HomeEffect
+sealed interface HomeEffect {
+    data class NavigateToDetailsScreen(val movieId: Int) : HomeEffect
+}
