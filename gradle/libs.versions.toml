@@ -17,6 +17,8 @@ retrofit = "3.0.0"
 kotlinSerialization = "2.2.10"
 kotlinxSerializationJson = "1.9.0"
 coilCompose = "3.3.0"
+pagingRuntime = "3.3.6"
+pagingCompose = "3.4.0-alpha03"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -44,6 +46,8 @@ retrofit-gson-converter = { module = "com.squareup.retrofit2:converter-gson", ve
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coilCompose" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pagingRuntime" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

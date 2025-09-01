@@ -1,6 +1,7 @@
 package com.islam97.android.apps.movie.core.di.modules
 
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.islam97.android.apps.movie.BuildConfig
 import com.islam97.android.apps.movie.core.di.qualifiers.ApiKey
 import com.islam97.android.apps.movie.core.di.qualifiers.BaseUrl
@@ -15,6 +16,7 @@ import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -35,7 +37,8 @@ class NetworkModule {
     fun provideHttpClient(@ApiKey apiKey: String): OkHttpClient {
         return OkHttpClient.Builder().addInterceptor(Interceptor {
             val request: Request = it.request()
-            val url = request.url.newBuilder().addQueryParameter("api_key", apiKey).build()
+            val url = request.url.newBuilder().addQueryParameter("api_key", apiKey)
+                .addQueryParameter("language", "en-US").build()
             val newRequest = request.newBuilder().url(url).build()
             it.proceed(newRequest)
         }).build()
@@ -44,7 +47,7 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideGson(): Gson {
-        return Gson()
+        return GsonBuilder().setDateFormat("yyyy-MM-dd").create()
     }
 
     @Singleton
