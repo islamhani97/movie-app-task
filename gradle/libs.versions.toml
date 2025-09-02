@@ -19,6 +19,8 @@ kotlinxSerializationJson = "1.9.0"
 coilCompose = "3.3.0"
 pagingRuntime = "3.3.6"
 pagingCompose = "3.4.0-alpha03"
+roomVersion = "2.7.2"
+kspVersion = "2.2.0-2.0.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -48,6 +50,8 @@ coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCo
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coilCompose" }
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pagingRuntime" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomVersion" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -58,4 +62,4 @@ kotlin-parcelize = { id = "kotlin-parcelize" }
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 navigation-safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
-
+ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
