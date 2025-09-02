@@ -10,7 +10,11 @@ interface MovieApi {
     @GET("3/discover/movie?include_adult=false&include_video=false")
     suspend fun getMovieList(@Query("page") page: Int): MovieListResponseDto
 
-
     @GET("3/movie/{movieId}")
     suspend fun getMovieDetails(@Path("movieId") movieId: Int): MovieDto
+
+    @GET("3/search/movie?include_adult=false")
+    suspend fun search(
+        @Query("query") searchQuery: String, @Query("page") page: Int
+    ): MovieListResponseDto
 }
