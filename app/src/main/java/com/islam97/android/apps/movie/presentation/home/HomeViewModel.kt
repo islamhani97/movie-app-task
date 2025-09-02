@@ -41,7 +41,7 @@ class HomeViewModel
 sealed interface HomeState {
     data object Loading : HomeState
     data class Content(val movies: Flow<PagingData<Movie>>) : HomeState
-    data class Error(val message: String) : HomeState
+    data class Error(val errorMessage: String) : HomeState
 }
 
 sealed interface HomeIntent {

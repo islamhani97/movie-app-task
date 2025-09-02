@@ -73,7 +73,7 @@ fun PreviewMovieItem() {
             backdropUrl = "",
             releaseYear = 2025,
             overview = "",
-            voteAverage = 8.0,
+            rating = 8.0,
             genres = listOf()
         )
     ) {}

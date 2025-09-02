@@ -29,6 +29,6 @@ fun MovieDto.toModel(): Movie {
             Calendar.getInstance().apply { setTime(it) }[Calendar.YEAR]
         },
         overview = overview,
-        voteAverage = String.format("%.1f", voteAverage).toDouble(),
+        rating = String.format("%.1f", voteAverage).toDouble(),
         genres = genres?.map { it.toModel() })
 }

@@ -25,6 +25,10 @@ class MovieDetailsViewModel
                 mutableState.value = MovieDetailsState.Loading
                 loadMovieDetails(movieId = intent.movieId)
             }
+
+            MovieDetailsIntent.Back -> viewModelScope.launch {
+                mutableEffectFlow.emit(MovieDetailsEffect.Back)
+            }
         }
     }
 
@@ -43,16 +47,17 @@ class MovieDetailsViewModel
     }
 }
 
-
 sealed interface MovieDetailsState {
     data object Loading : MovieDetailsState
     data class Success(val movie: Movie) : MovieDetailsState
     data class Error(val errorMessage: String) : MovieDetailsState
-
 }
 
 sealed interface MovieDetailsIntent {
     data class LoadMovieDetails(val movieId: Int) : MovieDetailsIntent
+    data object Back : MovieDetailsIntent
 }
 
-sealed interface MovieDetailsEffect
+sealed interface MovieDetailsEffect {
+    data object Back : MovieDetailsEffect
+}

@@ -49,6 +49,15 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = hilt
         ) {
             val (movieGridReference, loadingReference, errorReference) = createRefs()
             when (val uiState = state) {
+                HomeState.Loading -> {
+                    LoadingItem(modifier = Modifier.constrainAs(loadingReference) {
+                        top.linkTo(parent.top)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                        bottom.linkTo(parent.bottom)
+                    }, message = stringResource(R.string.loading))
+                }
+
                 is HomeState.Content -> {
                     val movies = uiState.movies.collectAsLazyPagingItems()
                     MovieGrid(modifier = Modifier.constrainAs(movieGridReference) {
@@ -63,15 +72,6 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = hilt
                     })
                 }
 
-                HomeState.Loading -> {
-                    LoadingItem(modifier = Modifier.constrainAs(loadingReference) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(parent.bottom)
-                    }, message = stringResource(R.string.loading_movies))
-                }
-
                 is HomeState.Error -> {
                     ErrorItem(
                         modifier = Modifier.constrainAs(errorReference) {
@@ -80,7 +80,7 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = hilt
                             end.linkTo(parent.end)
                             bottom.linkTo(parent.bottom)
                         },
-                        message = uiState.message,
+                        message = uiState.errorMessage,
                         onRetry = { viewModel.handleIntent(HomeIntent.LoadMovies) })
                 }
             }
