@@ -17,6 +17,8 @@ import androidx.navigation.compose.rememberNavController
 import com.islam97.android.apps.movie.core.utils.NAVIGATION_DURATION
 import com.islam97.android.apps.movie.presentation.home.HomeScreen
 import com.islam97.android.apps.movie.presentation.home.RouteHomeScreen
+import com.islam97.android.apps.movie.presentation.moviedetails.MovieDetailsScreen
+import com.islam97.android.apps.movie.presentation.moviedetails.RouteMovieDetailsScreen
 import com.islam97.android.apps.movie.presentation.ui.theme.MovieTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -61,7 +63,11 @@ fun MainNavigation() {
             )
         }) {
         composable<RouteHomeScreen> {
-            HomeScreen()
+            HomeScreen(navController = navController)
+        }
+
+        composable<RouteMovieDetailsScreen> {
+            MovieDetailsScreen(navController = navController, backStackEntry = it)
         }
     }
 }

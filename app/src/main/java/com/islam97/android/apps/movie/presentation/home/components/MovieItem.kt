@@ -29,8 +29,7 @@ fun MovieItem(movie: Movie, onClick: (Movie) -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
-            .clickable { onClick(movie) }
-    ) {
+            .clickable { onClick(movie) }) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -57,9 +56,7 @@ fun MovieItem(movie: Movie, onClick: (Movie) -> Unit) {
 
         movie.releaseYear?.let {
             Text(
-                text = "$it",
-                style = MaterialTheme.typography.bodySmall,
-                color = Color.Gray
+                text = "$it", style = MaterialTheme.typography.bodySmall, color = Color.Gray
             )
         }
     }
@@ -68,5 +65,16 @@ fun MovieItem(movie: Movie, onClick: (Movie) -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun PreviewMovieItem() {
-    MovieItem(Movie(1, "Title", "", 2025)) {}
+    MovieItem(
+        Movie(
+            id = 1,
+            title = "Title",
+            posterUrl = "",
+            backdropUrl = "",
+            releaseYear = 2025,
+            overview = "",
+            rating = 8.0,
+            genres = listOf()
+        )
+    ) {}
 }

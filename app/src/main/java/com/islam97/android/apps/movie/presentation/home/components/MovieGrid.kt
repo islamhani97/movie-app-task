@@ -36,7 +36,7 @@ fun MovieGrid(
             when {
                 loadState.refresh is LoadState.Loading -> {
                     item(span = { GridItemSpan(2) }) {
-                        LoadingItem(message = stringResource(R.string.loading_movies))
+                        LoadingItem(message = stringResource(R.string.loading))
                     }
                 }
 
