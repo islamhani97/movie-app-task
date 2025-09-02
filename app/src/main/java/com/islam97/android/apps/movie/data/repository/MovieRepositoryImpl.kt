@@ -22,4 +22,14 @@ class MovieRepositoryImpl
     override suspend fun getMovieDetails(movieId: Int): Result<Movie> {
         return apiCallHandler.callApi(apiCall = { movieApi.getMovieDetails(movieId) }) { toModel() }
     }
+
+    override suspend fun search(
+        searchQuery: String, page: Int
+    ): Result<MovieListResponse> {
+        return apiCallHandler.callApi(apiCall = {
+            movieApi.search(
+                searchQuery, page
+            )
+        }) { toModel() }
+    }
 }

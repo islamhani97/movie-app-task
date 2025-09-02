@@ -6,11 +6,11 @@ import com.islam97.android.apps.movie.domain.model.Movie
 import com.islam97.android.apps.movie.domain.repository.MovieRepository
 import javax.inject.Inject
 
-class GetMovieListUseCase
+class SearchUseCase
 @Inject constructor(private val movieRepository: MovieRepository) {
-    fun invoke(): Pager<Int, Movie> {
+    fun invoke(searchQuery: String): Pager<Int, Movie> {
         return Pager(config = PagingConfig(pageSize = 20), initialKey = 1, pagingSourceFactory = {
-            MoviePagingSource { page -> movieRepository.getMovieList(page) }
+            MoviePagingSource { page -> movieRepository.search(searchQuery, page) }
         })
     }
 }
