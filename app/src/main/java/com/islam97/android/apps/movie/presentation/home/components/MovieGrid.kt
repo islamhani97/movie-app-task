@@ -13,6 +13,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.islam97.android.apps.movie.R
 import com.islam97.android.apps.movie.domain.model.Movie
+import com.islam97.android.apps.movie.presentation.home.EmptyView
 
 @Composable
 fun MovieGrid(
@@ -63,6 +64,12 @@ fun MovieGrid(
                             message = e.error.localizedMessage
                                 ?: stringResource(R.string.error_something_went_wrong),
                             onRetry = { retry() })
+                    }
+                }
+
+                movies.itemCount == 0 && movies.loadState.refresh is LoadState.NotLoading && movies.loadState.append.endOfPaginationReached -> {
+                    item(span = { GridItemSpan(2) }) {
+                        EmptyView(message = stringResource(R.string.no_movies))
                     }
                 }
             }

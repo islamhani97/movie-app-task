@@ -16,12 +16,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil3.compose.AsyncImage
 import com.islam97.android.apps.movie.domain.model.Movie
+import com.islam97.android.apps.movie.presentation.components.AppAsyncImage
 
 @Composable
 fun MovieItem(movie: Movie, onClick: (Movie) -> Unit) {
@@ -37,11 +36,8 @@ fun MovieItem(movie: Movie, onClick: (Movie) -> Unit) {
             shape = RoundedCornerShape(8.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
-            AsyncImage(
-                model = movie.posterUrl,
-                contentDescription = movie.title,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+            AppAsyncImage(
+                modifier = Modifier.fillMaxSize(), model = movie.posterUrl
             )
         }
 
