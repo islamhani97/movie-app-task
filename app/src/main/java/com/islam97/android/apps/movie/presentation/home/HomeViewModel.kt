@@ -8,6 +8,7 @@ import com.islam97.android.apps.movie.domain.usecase.GetMovieListUseCase
 import com.islam97.android.apps.movie.domain.usecase.SearchUseCase
 import com.islam97.android.apps.movie.presentation.base.MviViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -54,8 +55,11 @@ class HomeViewModel
     }
 
     private fun loadMovies() {
-        mutableState.value =
-            HomeState.Content(getMovieListUseCase.invoke().flow.cachedIn(viewModelScope))
+        viewModelScope.launch(Dispatchers.IO) {
+            mutableState.value =
+                HomeState.Content(getMovieListUseCase.invoke().cachedIn(viewModelScope))
+
+        }
     }
 
     @OptIn(FlowPreview::class)
