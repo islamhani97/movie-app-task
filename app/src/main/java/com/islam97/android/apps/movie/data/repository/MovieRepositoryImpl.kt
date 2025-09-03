@@ -2,7 +2,7 @@ package com.islam97.android.apps.movie.data.repository
 
 import com.islam97.android.apps.movie.core.utils.ApiCallHandler
 import com.islam97.android.apps.movie.core.utils.Result
-import com.islam97.android.apps.movie.data.dto.toModel
+import com.islam97.android.apps.movie.data.mapper.toModel
 import com.islam97.android.apps.movie.data.remote.MovieApi
 import com.islam97.android.apps.movie.domain.model.Movie
 import com.islam97.android.apps.movie.domain.model.MovieListResponse

@@ -129,6 +129,9 @@ dependencies {
     // Room
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
+
+    // Room & Paging 3 Integration
+    implementation(libs.androidx.room.paging)
 }
 
 // Allow references to generated code
