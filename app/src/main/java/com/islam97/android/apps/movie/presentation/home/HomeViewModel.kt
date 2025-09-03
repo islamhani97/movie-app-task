@@ -77,8 +77,10 @@ class HomeViewModel
     }
 
     private fun search(searchQuery: String) {
-        mutableState.value =
-            HomeState.Content(searchUseCase.invoke(searchQuery).flow.cachedIn(viewModelScope))
+        viewModelScope.launch(Dispatchers.IO) {
+            mutableState.value =
+                HomeState.Content(searchUseCase.invoke(searchQuery).flow.cachedIn(viewModelScope))
+        }
     }
 }
 

@@ -1,7 +1,6 @@
 package com.islam97.android.apps.movie.core.di.modules
 
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.islam97.android.apps.movie.BuildConfig
 import com.islam97.android.apps.movie.core.di.qualifiers.ApiKey
 import com.islam97.android.apps.movie.core.di.qualifiers.BaseUrl
@@ -47,7 +46,7 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideGson(): Gson {
-        return GsonBuilder().setDateFormat("yyyy-MM-dd").create()
+        return Gson()
     }
 
     @Singleton
