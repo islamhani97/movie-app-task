@@ -28,7 +28,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -40,8 +39,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.toRoute
-import coil3.compose.AsyncImage
 import com.islam97.android.apps.movie.R
+import com.islam97.android.apps.movie.presentation.components.AppAsyncImage
 import com.islam97.android.apps.movie.presentation.home.components.ErrorItem
 import com.islam97.android.apps.movie.presentation.home.components.LoadingItem
 import kotlinx.serialization.Serializable
@@ -108,42 +107,34 @@ fun MovieDetailsScreen(
                 }
 
                 is MovieDetailsState.Success -> {
-                    AsyncImage(
-                        modifier = Modifier
-                            .constrainAs(backdropReference) {
-                                top.linkTo(parent.top)
-                                start.linkTo(parent.start)
-                                end.linkTo(parent.end)
-                            }
-                            .fillMaxWidth()
-                            .aspectRatio(16f / 9f),
-                        model = uiState.movie.backdropUrl,
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop)
+                    AppAsyncImage(modifier = Modifier
+                        .constrainAs(backdropReference) {
+                            top.linkTo(parent.top)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                        }
+                        .fillMaxWidth()
+                        .aspectRatio(16f / 9f),
+                        model = uiState.movie.backdropUrl)
 
-                    AsyncImage(
-                        modifier = Modifier
-                            .constrainAs(posterReference) {
-                                top.linkTo(backdropReference.bottom)
-                                start.linkTo(startGuideline)
-                            }
-                            .width(120.dp)
-                            .aspectRatio(2f / 3f)
-                            .padding(top = 16.dp)
-                            .clip(RoundedCornerShape(8.dp)),
-                        model = uiState.movie.posterUrl,
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop)
+                    AppAsyncImage(modifier = Modifier
+                        .constrainAs(posterReference) {
+                            top.linkTo(backdropReference.bottom)
+                            start.linkTo(startGuideline)
+                        }
+                        .width(120.dp)
+                        .aspectRatio(2f / 3f)
+                        .padding(top = 16.dp)
+                        .clip(RoundedCornerShape(8.dp)), model = uiState.movie.posterUrl)
 
-                    Column(
-                        modifier = Modifier
-                            .constrainAs(movieDetailsReference) {
-                                top.linkTo(posterReference.top)
-                                start.linkTo(posterReference.end)
-                                end.linkTo(endGuideline)
-                                width = Dimension.fillToConstraints
-                            }
-                            .padding(top = 16.dp, start = 16.dp),
+                    Column(modifier = Modifier
+                        .constrainAs(movieDetailsReference) {
+                            top.linkTo(posterReference.top)
+                            start.linkTo(posterReference.end)
+                            end.linkTo(endGuideline)
+                            width = Dimension.fillToConstraints
+                        }
+                        .padding(top = 16.dp, start = 16.dp),
                         verticalArrangement = Arrangement.spacedBy(4.dp)) {
                         Text(
                             text = uiState.movie.title ?: "",
@@ -178,16 +169,14 @@ fun MovieDetailsScreen(
                         }
                     }
 
-                    Text(
-                        modifier = Modifier
-                            .constrainAs(overviewLabelReference) {
-                                top.linkTo(overviewBarrier)
-                                start.linkTo(startGuideline)
-                            }
-                            .padding(top = 16.dp),
+                    Text(modifier = Modifier
+                        .constrainAs(overviewLabelReference) {
+                            top.linkTo(overviewBarrier)
+                            start.linkTo(startGuideline)
+                        }
+                        .padding(top = 16.dp),
                         text = stringResource(R.string.overview),
-                        style = MaterialTheme.typography.titleMedium
-                    )
+                        style = MaterialTheme.typography.titleMedium)
 
                     Text(
                         modifier = Modifier
@@ -206,18 +195,15 @@ fun MovieDetailsScreen(
                 }
 
                 is MovieDetailsState.Error -> {
-                    ErrorItem(
-                        modifier = Modifier.constrainAs(errorReference) {
-                            top.linkTo(parent.top)
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
-                            bottom.linkTo(parent.bottom)
-                        },
-                        message = uiState.errorMessage,
-                        onRetry = {
-                            val route = backStackEntry.toRoute<RouteMovieDetailsScreen>()
-                            viewModel.handleIntent(MovieDetailsIntent.LoadMovieDetails(route.movieId))
-                        })
+                    ErrorItem(modifier = Modifier.constrainAs(errorReference) {
+                        top.linkTo(parent.top)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                        bottom.linkTo(parent.bottom)
+                    }, message = uiState.errorMessage, onRetry = {
+                        val route = backStackEntry.toRoute<RouteMovieDetailsScreen>()
+                        viewModel.handleIntent(MovieDetailsIntent.LoadMovieDetails(route.movieId))
+                    })
                 }
             }
         }
