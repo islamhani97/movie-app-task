@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class SearchUseCase
 @Inject constructor(private val movieRepository: MovieRepository) {
-    fun invoke(searchQuery: String): Pager<Int, Movie> {
+    operator fun invoke(searchQuery: String): Pager<Int, Movie> {
         return Pager(config = PagingConfig(pageSize = 20), initialKey = 1, pagingSourceFactory = {
             MoviePagingSource { page -> movieRepository.search(searchQuery, page) }
         })
