@@ -132,6 +132,19 @@ dependencies {
 
     // Room & Paging 3 Integration
     implementation(libs.androidx.room.paging)
+
+    // Mockk
+    implementation(libs.mockk)
+
+    // Google Truth
+    testImplementation(libs.truth)
+    androidTestImplementation(libs.truth)
+
+    // Turbine
+    testImplementation(libs.turbine)
+
+    // Kotlin Coroutines Test
+    testImplementation(libs.kotlinx.coroutines.test)
 }
 
 // Allow references to generated code

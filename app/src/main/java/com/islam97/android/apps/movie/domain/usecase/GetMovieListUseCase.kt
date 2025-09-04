@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class GetMovieListUseCase
 @Inject constructor(private val movieRepository: MovieRepository) {
-    suspend fun invoke(): Flow<PagingData<Movie>> {
+    suspend operator fun invoke(): Flow<PagingData<Movie>> {
         return movieRepository.getMovieList()
     }
 }
